@@ -43,12 +43,12 @@ export class RegisterComponent implements OnInit {
     this.registerForm.controls.username.valueChanges
       .debounceTime(1000)
       .switchMap((value) => this.userService.hasUser(value))
-      .subscribe((user) => {
-        if (user) {
+      .subscribe((username) => {
+        if (username) {
           this.messageService.add({
             severity: 'warn',
             summary: 'Register Message',
-            detail: `Account:${user} Already Exist`
+            detail: `Account:${username} Already Exist`
           });
         }
       });
