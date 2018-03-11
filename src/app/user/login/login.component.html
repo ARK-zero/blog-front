@@ -1,13 +1,16 @@
+<i class="fa fa-arrow-circle-left back" aria-hidden="true" (click)="goBack()"></i>
+
 <div class='login-page'>
 
   <form [formGroup]='loginForm'>
+
     <div class='ui-float-label input'>
-      <input formControlName='username' id='username' type='text' pInputText>
+      <input formControlName='username' id='username' type='text' pInputText pTooltip="Enter your username" tooltipPosition="top" tooltipEvent="focus">
       <label for='username'>username</label>
     </div>
 
     <div class='ui-float-label input'>
-      <input formControlName='password' id='password' type='password' pInputText>
+      <input formControlName='password' id='password' type='password' pInputText pTooltip="Enter your password" tooltipPosition="top" tooltipEvent="focus">
       <label for='password'>password</label>
     </div>
 

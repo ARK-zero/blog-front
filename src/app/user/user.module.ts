@@ -7,11 +7,13 @@ import {RegisterComponent} from './register/register.component';
 import {UserService} from './user.service';
 
 import {InputTextModule} from 'primeng/inputtext';
+import {TooltipModule} from 'primeng/tooltip';
 import {ButtonModule} from 'primeng/button';
 
 const PrimeNGModules = [
   InputTextModule,
-  ButtonModule
+  ButtonModule,
+  TooltipModule
 ];
 const PrimeNGServices = [
 ];

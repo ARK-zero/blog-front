@@ -1,3 +1,14 @@
+.back {
+  margin: 1rem;
+  font-size: 2rem;
+  color: #2399e5;
+  transition: all .1s;
+  cursor: pointer;
+  &:hover {
+    color: #7be58b;
+  }
+}
+
 .register-page {
   position: fixed;
   top: 30%;
@@ -17,6 +28,10 @@
 
   .input {
     margin-top: 1.5rem;
+
+    .hasUser {
+
+    }
   }
 
   .submit {

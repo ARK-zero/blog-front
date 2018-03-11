@@ -14,11 +14,10 @@ export class UserService {
   constructor(private http: HttpClient, private router: Router, private messageService: MessageService) {
   }
 
-
   login(user: User): Observable<boolean> {
     const url = '/user/login';
     return this.http.post(url, user)
-      .map((value) => value['login'])
+      .map((res) => res['login'])
       .catch(err => {
         this.messageService.add({
           severity: 'error',
@@ -29,11 +28,10 @@ export class UserService {
       });
   }
 
-
   register(user: User): Observable<boolean> {
     const url = '/user/register';
     return this.http.post(url, user)
-      .map((value) => value['register'])
+      .map((res) => res['register'])
       .catch(err => {
         this.messageService.add({
           severity: 'error',
@@ -42,6 +40,19 @@ export class UserService {
         });
         throw err.message;
       });
+  }
+
+  logout() {
+    const url = '/user/logout';
+    this.http.post(url, null).subscribe(() => {
+      this.router.navigateByUrl('/');
+    });
+  }
+
+  hasUser(username: string): Observable<boolean | string> {
+    const url = '/user/hasUser';
+    return this.http.post(url, {username: username})
+      .map((res) => res['hasUser']);
   }
 
 

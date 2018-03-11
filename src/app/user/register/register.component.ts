@@ -1,8 +1,10 @@
 import {Component, OnInit} from '@angular/core';
-import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {Router} from '@angular/router';
 import {UserService} from '../user.service';
 import {MessageService} from 'primeng/components/common/messageservice';
+import 'rxjs/add/operator/debounceTime';
+import 'rxjs/add/operator/switchMap';
 
 @Component({
   selector: 'app-register',
@@ -19,7 +21,6 @@ export class RegisterComponent implements OnInit {
               private router: Router) {
   }
 
-
   ngOnInit() {
     this.initForm();
   }
@@ -27,12 +28,30 @@ export class RegisterComponent implements OnInit {
   initForm() {
     this.registerForm = this.formBuilder.group({
       username: ['', [
-        Validators.required
+        Validators.required,
+        Validators.pattern(/^[\u4e00-\u9fa5\w\d]{2,8}$/)
       ]],
       password: ['', [
+        Validators.required,
+        Validators.pattern(/^[\w\d!@#$%^&*]{6,16}$/)
+      ]],
+      inviteCode: ['', [
         Validators.required
       ]]
     });
+
+    this.registerForm.controls.username.valueChanges
+      .debounceTime(1000)
+      .switchMap((value) => this.userService.hasUser(value))
+      .subscribe((user) => {
+        if (user) {
+          this.messageService.add({
+            severity: 'warn',
+            summary: 'Register Message',
+            detail: `Account:${user} Already Exist`
+          });
+        }
+      });
   }
 
   register() {
@@ -40,15 +59,15 @@ export class RegisterComponent implements OnInit {
       if (success) {
         this.messageService.add({
           severity: 'success',
-          summary: 'Login Message',
-          detail: 'Login Success, Welcome Back'
+          summary: 'Register Message',
+          detail: 'SignUp Success, Welcome Back'
         });
         this.registerForm.reset();
       } else {
         this.messageService.add({
           severity: 'warn',
-          summary: 'Login Message',
-          detail: 'Account Info Not Match'
+          summary: 'Register Message',
+          detail: 'SignUp Fail'
         });
         this.registerForm.reset();
       }
@@ -59,5 +78,8 @@ export class RegisterComponent implements OnInit {
     this.router.navigateByUrl('/login');
   }
 
+  goBack() {
+    window.history.back();
+  }
 
 }

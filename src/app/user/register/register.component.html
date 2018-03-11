@@ -1,14 +1,21 @@
+<i class="fa fa-arrow-circle-left back" aria-hidden="true" (click)="goBack()"></i>
+
 <div class='register-page'>
 
   <form [formGroup]='registerForm'>
     <div class='ui-float-label input'>
-      <input formControlName='username' id='username' type='text' pInputText>
+      <input formControlName='username' id='username' type='text' pInputText pTooltip="/^[\u4e00-\u9fa5\w\d]{2,8}$/" tooltipPosition="top" tooltipEvent="focus">
       <label for='username'>username</label>
     </div>
 
     <div class='ui-float-label input'>
-      <input formControlName='password' id='password' type='password' pInputText>
+      <input formControlName='password' id='password' type='password' pInputText pTooltip="/^[\w\d!@#$%^&*]{6,16}$/" tooltipPosition="top" tooltipEvent="focus">
       <label for='password'>password</label>
+    </div>
+
+    <div class='ui-float-label input'>
+      <input formControlName='inviteCode' id='inviteCode' type='password' pInputText>
+      <label for='inviteCode'>inviteCode</label>
     </div>
 
     <button class="input submit" pButton type="button" label="Sign Up" (click)="register()" [disabled]="!registerForm.valid"></button>
