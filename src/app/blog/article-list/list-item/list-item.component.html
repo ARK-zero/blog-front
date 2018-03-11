@@ -1,0 +1,19 @@
+
+<ng-container *ngIf="!articleItem.routerLink">
+  <a class="routerLink" (click)="expand()"
+     [ngClass]="{'classification-item': articleItem.first, 'active': articleItem.expanded && articleItem.first,
+      'second-active': articleItem.expanded && articleItem.children && !articleItem.first}">
+    <span class="item-title">{{articleItem.title}}</span>
+    <i class="fa fa-angle-right fa-fw" [ngClass]="{'fa-rotate-90': articleItem.expanded}" *ngIf="articleItem.children" style="transition: all .1s"></i>
+  </a>
+</ng-container>
+
+<ng-container *ngIf="articleItem.routerLink">
+  <a class="routerLink" [routerLink]="articleItem.routerLink" routerLinkActive="routerLinkActive">
+    <span class="item-title" [pTooltip]="articleItem.title" tooltipPosition="left" tooltipEvent="hover">{{articleItem.title}}</span>
+  </a>
+</ng-container>
+
+<ul [ngClass]="{'item-list': articleItem.first}" [@expand]="articleItem.expanded? 'visible': 'hidden'" *ngIf="articleItem.children">
+  <li app-list-item *ngFor="let childItems of articleItem.children" [articleItem]="childItems" [parent]="articleItem"></li>
+</ul>

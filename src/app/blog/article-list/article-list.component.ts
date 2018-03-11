@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import {ArticleItem} from './common/article-item';
 
 @Component({
   selector: 'app-article-list',
@@ -7,9 +8,27 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ArticleListComponent implements OnInit {
 
-  constructor() { }
+  @Input() articleList: ArticleItem[];
 
-  ngOnInit() {
+  activeIndex: number = null;
+
+  constructor() {
   }
 
+  ngOnInit() {
+    for (const item of this.articleList) {
+      item.first = true;
+    }
+  }
+
+  expandToggle(index) {
+    if (!this.articleList[index].expanded) {
+      this.articleList.forEach(item => item.expanded = false);
+      this.articleList[index].expanded = true;
+      this.activeIndex = index;
+    } else {
+      this.articleList[index].expanded = false;
+      this.activeIndex = null;
+    }
+  }
 }

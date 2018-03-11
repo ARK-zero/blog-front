@@ -21,7 +21,7 @@ const FeatureModule = [
 ];
 
 const routes: Routes = [
-  {path: '', redirectTo: 'login', pathMatch: 'full'},
+  {path: '', loadChildren: './blog/blog.module#BlogModule'},
   {path: 'login', component: LoginComponent},
   {path: 'register', component: RegisterComponent},
   {path: '**', redirectTo: 'login'}
@@ -36,7 +36,7 @@ const routes: Routes = [
     BrowserAnimationsModule,
     RouterModule.forRoot(routes),
     ...FeatureModule,
-    ...PrimeNGModules,
+    ...PrimeNGModules
   ],
   providers: [
     ...PrimeNGServices

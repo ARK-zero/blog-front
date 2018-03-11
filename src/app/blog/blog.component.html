@@ -1,3 +1,10 @@
-<p>
-  blog works!
-</p>
+<app-header></app-header>
+<div class="content ui-g">
+  <div class="article-list ui-g-3">
+    <app-article-list [articleList]="articleList"></app-article-list>
+  </div>
+
+  <div class="article-content ui-g-9">
+    <app-article-content></app-article-content>
+  </div>
+</div>

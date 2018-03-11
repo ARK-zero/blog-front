@@ -1,0 +1,61 @@
+$menu-color: #464646;
+
+ul {
+  overflow: hidden;
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+}
+
+.classification-item {
+  border-radius: 6px;
+  transition: all 0.25s;
+  .hide {
+    display: none;
+  }
+  &.active {
+    background: rgba(0, 172, 0, 0.52);
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+    box-shadow: 0 .1rem .1rem rgba(68, 68, 68, 0.3);
+  }
+}
+
+.item-list {
+  background-color: rgba(199, 199, 199, 0.2);
+  border-bottom-left-radius: 6px;
+  border-bottom-right-radius: 6px;
+}
+
+.routerLink {
+  position: relative;
+  display: flex;
+  width: 100%;
+  align-items: center;
+  padding: .5rem;
+  cursor: pointer;
+  color: $menu-color;
+  &:link {
+    color: $menu-color;
+  }
+  &.second-active {
+    color: rgb(255, 248, 186);
+  }
+  &:not(.active):hover {
+    background: rgba(210, 210, 210, 0.44);
+  }
+  .item-title {
+    display: inline-block;
+    font-size: 0.875rem;
+    flex: 1;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+}
+
+.routerLinkActive {
+  color: rgb(255, 248, 186);
+}

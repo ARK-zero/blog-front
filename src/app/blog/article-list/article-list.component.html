@@ -1,3 +1,5 @@
-<p>
-  article-list works!
-</p>
+<ul id="articleList" class="articleList">
+  <li app-list-item *ngFor="let articleItem of articleList; index as itemIndex"
+      [articleItem]="articleItem" [index]="itemIndex" (expandToggle)="expandToggle($event)">
+  </li>
+</ul>
