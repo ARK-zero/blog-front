@@ -1,0 +1,25 @@
+.login-page {
+  position: fixed;
+  top: 30%;
+  left: 50%;
+  transform: translateY(-50%) translateX(-50%);
+
+  .go-register {
+    position: absolute;
+    right: 0;
+    margin-top: .25rem;
+    cursor: pointer;
+    color: #2399e5;
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+
+  .input {
+    margin-top: 1.5rem;
+  }
+
+  .submit {
+    width: 100%;
+  }
+}

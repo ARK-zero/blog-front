@@ -1,0 +1,19 @@
+<div class='login-page'>
+
+  <form [formGroup]='loginForm'>
+    <div class='ui-float-label input'>
+      <input formControlName='username' id='username' type='text' pInputText>
+      <label for='username'>username</label>
+    </div>
+
+    <div class='ui-float-label input'>
+      <input formControlName='password' id='password' type='password' pInputText>
+      <label for='password'>password</label>
+    </div>
+
+    <button class="input submit" pButton type="button" label="Sign In" (click)="login()" [disabled]="!loginForm.valid"></button>
+
+    <a class="go-register" (click)="goRegister()">create an account.</a>
+  </form>
+
+</div>
