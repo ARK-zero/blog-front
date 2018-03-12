@@ -34,6 +34,7 @@ export class ArticleEditComponent implements OnInit {
               private userService: UserService,
               private router: Router,
               private activatedRoute: ActivatedRoute) {
+    this.article = new Article();
   }
 
   ngOnInit() {
