@@ -9,6 +9,8 @@ import {GrowlModule} from 'primeng/growl';
 import {AppComponent} from './app.component';
 import {UserModule, LoginComponent, RegisterComponent, UserListComponent} from './user';
 
+import {LoginGuard} from './auth-guards';
+
 const PrimeNGModules = [
   GrowlModule
 ];
@@ -16,14 +18,14 @@ const PrimeNGServices = [
   MessageService
 ];
 
-const FeatureModule = [
-  UserModule
+const Guards = [
+  LoginGuard
 ];
 
 const routes: Routes = [
   {path: '', component: UserListComponent},
-  {path: 'login', component: LoginComponent},
-  {path: 'register', component: RegisterComponent},
+  {path: 'login', component: LoginComponent, canActivate: [LoginGuard]},
+  {path: 'register', component: RegisterComponent, canActivate: [LoginGuard]},
   {path: 'author', loadChildren: './blog/blog.module#BlogModule'},
   {path: '**', redirectTo: ''}
 ];
@@ -36,11 +38,12 @@ const routes: Routes = [
     BrowserModule,
     BrowserAnimationsModule,
     RouterModule.forRoot(routes),
-    ...FeatureModule,
+    UserModule,
     ...PrimeNGModules
   ],
   providers: [
-    ...PrimeNGServices
+    ...PrimeNGServices,
+    ...Guards
   ],
   bootstrap: [AppComponent],
   entryComponents: []

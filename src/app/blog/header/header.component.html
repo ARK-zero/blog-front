@@ -1,3 +1,29 @@
 <div class="header">
+  <div class="container flex-align">
 
+    <div class="logo"></div>
+
+    <div class="head-menu flex-align">
+
+
+      <div *ngIf="!userService.isLogin" class="flex-align">
+        <div class="navigate" (click)="goLogin()">Sign In</div>
+        <div class="navigate" (click)="goRegister()">Sign Up</div>
+      </div>
+
+      <div *ngIf="userService.isLogin" class="flex-align dropdown" appDropdown>
+        <div class="flex-align action-icon">
+          <i class="fa fa-user-o user-icon" aria-hidden="true"></i>
+          <i class="fa fa-sort-desc" aria-hidden="true"></i>
+        </div>
+        <ul class="dropdown-menu">
+          <li><span class="dropdown-item">{{userService.username}}</span></li>
+          <li class="dropdown-divider"></li>
+          <li><span class="dropdown-item action-item">Settings</span></li>
+          <li><span class="dropdown-item action-item" (click)="logout()">Sign out</span></li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
 </div>

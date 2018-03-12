@@ -13,6 +13,8 @@ export class UserService {
 
   username: string;
 
+  isLogin: boolean;
+
   constructor(private http: HttpClient, private router: Router, private messageService: MessageService) {
   }
 
@@ -28,6 +30,11 @@ export class UserService {
         });
         throw err.message;
       });
+  }
+
+  checkStatus() {
+    const url = '/user/checkStatus';
+    return this.http.post(url, null);
   }
 
   register(user: User): Observable<boolean> {
@@ -47,7 +54,9 @@ export class UserService {
   logout() {
     const url = '/user/logout';
     this.http.post(url, null).subscribe(() => {
-      this.router.navigateByUrl('/');
+      // this.router.navigateByUrl('/');
+      this.username = null;
+      this.isLogin = false;
     });
   }
 

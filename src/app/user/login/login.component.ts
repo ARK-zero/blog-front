@@ -35,23 +35,26 @@ export class LoginComponent implements OnInit {
   }
 
   login() {
-    this.userService.login(this.loginForm.value).subscribe((success) => {
-      if (success) {
-        this.messageService.add({
-          severity: 'success',
-          summary: 'Login Message',
-          detail: 'Login Success, Welcome Back'
-        });
-        this.loginForm.reset();
-      } else {
-        this.messageService.add({
-          severity: 'warn',
-          summary: 'Login Message',
-          detail: 'Account Info Not Match'
-        });
-        this.loginForm.reset();
-      }
-    });
+    this.userService.login(this.loginForm.value)
+      .subscribe((success) => {
+        if (success) {
+          this.messageService.add({
+            severity: 'success',
+            summary: 'Login Message',
+            detail: 'Login Success, Welcome Back'
+          });
+          this.userService.isLogin = true;
+          this.userService.username = this.loginForm.value.username;
+          this.router.navigateByUrl('/');
+        } else {
+          this.messageService.add({
+            severity: 'warn',
+            summary: 'Login Message',
+            detail: 'Account Info Not Match'
+          });
+          this.loginForm.reset();
+        }
+      });
   }
 
   goRegister() {
@@ -60,6 +63,10 @@ export class LoginComponent implements OnInit {
 
   goBack() {
     window.history.back();
+  }
+
+  goHome() {
+    this.router.navigateByUrl('/');
   }
 
 }

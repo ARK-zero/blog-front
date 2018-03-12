@@ -12,6 +12,7 @@ import {ArticleContentComponent} from './article/article-content/article-content
 import {ListItemComponent} from './article/article-list/list-item/list-item.component';
 
 import {ArticleService} from './services/article.service';
+import { DropdownDirective } from './header/directive/dropdown.directive';
 
 const PrimeNGModules = [
   TooltipModule
@@ -39,7 +40,7 @@ const routes: Routes = [
     RouterModule.forChild(routes),
     ...PrimeNGModules
   ],
-  declarations: [...BlogComponents],
+  declarations: [...BlogComponents, DropdownDirective],
   providers: [
     ArticleService
   ]

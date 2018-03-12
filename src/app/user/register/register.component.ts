@@ -82,4 +82,7 @@ export class RegisterComponent implements OnInit {
     window.history.back();
   }
 
+  goHome() {
+    this.router.navigateByUrl('/');
+  }
 }

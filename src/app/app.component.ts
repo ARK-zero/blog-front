@@ -1,13 +1,18 @@
 import {Component} from '@angular/core';
-import {MessageService} from 'primeng/components/common/messageservice';
+import {UserService} from './user';
 
 @Component({
   selector: 'app-root',
   template: `<router-outlet></router-outlet>
-  <p-growl [life]="5000"></p-growl>`
+  <p-growl [life]="3000"></p-growl>`
 })
 export class AppComponent {
 
-  constructor() {}
+  constructor(private userService: UserService) {
+    this.userService.checkStatus().subscribe(status => {
+      this.userService.username = status['username'];
+      this.userService.isLogin = status['isLogin'];
+    });
+  }
 
 }
