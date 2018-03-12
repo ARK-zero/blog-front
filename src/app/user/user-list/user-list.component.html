@@ -1,0 +1,5 @@
+<div class="user-list">
+  <div *ngFor="let author of authors">
+    <span class="author-item" routerLink="author/{{author._id}}">{{author._id}}</span>
+  </div>
+</div>

@@ -6,10 +6,12 @@ import {TooltipModule} from 'primeng/tooltip';
 
 import {BlogComponent} from './blog.component';
 import {HeaderComponent} from './header/header.component';
-import {ArticleListComponent} from './article-list/article-list.component';
-import {ArticleEditeComponent} from './article-edite/article-edite.component';
-import {ArticleContentComponent} from './article-content/article-content.component';
-import {ListItemComponent} from './article-list/list-item/list-item.component';
+import {ArticleListComponent} from './article/article-list/article-list.component';
+import {ArticleEditeComponent} from './article/article-edite/article-edite.component';
+import {ArticleContentComponent} from './article/article-content/article-content.component';
+import {ListItemComponent} from './article/article-list/list-item/list-item.component';
+
+import {ArticleService} from './services/article.service';
 
 const PrimeNGModules = [
   TooltipModule
@@ -25,7 +27,9 @@ const BlogComponents = [
 ];
 
 const routes: Routes = [
-  {path: '', component: BlogComponent}
+  {path: ':author', component: BlogComponent, children: [
+    {path: ':articleId', component: ArticleContentComponent}
+  ]}
 ];
 
 @NgModule({
@@ -34,7 +38,10 @@ const routes: Routes = [
     RouterModule.forChild(routes),
     ...PrimeNGModules
   ],
-  declarations: [...BlogComponents]
+  declarations: [...BlogComponents],
+  providers: [
+    ArticleService
+  ]
 })
 export class BlogModule {
 }

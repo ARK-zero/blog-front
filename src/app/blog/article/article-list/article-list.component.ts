@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, AfterViewInit } from '@angular/core';
 import {ArticleItem} from './common/article-item';
 
 @Component({
@@ -16,9 +16,6 @@ export class ArticleListComponent implements OnInit {
   }
 
   ngOnInit() {
-    for (const item of this.articleList) {
-      item.first = true;
-    }
   }
 
   expandToggle(index) {

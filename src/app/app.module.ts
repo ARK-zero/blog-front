@@ -7,7 +7,7 @@ import {MessageService} from 'primeng/components/common/messageservice';
 import {GrowlModule} from 'primeng/growl';
 
 import {AppComponent} from './app.component';
-import {UserModule, LoginComponent, RegisterComponent} from './user';
+import {UserModule, LoginComponent, RegisterComponent, UserListComponent} from './user';
 
 const PrimeNGModules = [
   GrowlModule
@@ -21,10 +21,11 @@ const FeatureModule = [
 ];
 
 const routes: Routes = [
-  {path: '', loadChildren: './blog/blog.module#BlogModule'},
+  {path: '', component: UserListComponent},
   {path: 'login', component: LoginComponent},
   {path: 'register', component: RegisterComponent},
-  {path: '**', redirectTo: 'login'}
+  {path: 'author', loadChildren: './blog/blog.module#BlogModule'},
+  {path: '**', redirectTo: ''}
 ];
 
 @NgModule({

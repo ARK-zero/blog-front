@@ -11,6 +11,8 @@ import 'rxjs/add/observable/of';
 @Injectable()
 export class UserService {
 
+  username: string;
+
   constructor(private http: HttpClient, private router: Router, private messageService: MessageService) {
   }
 
@@ -55,5 +57,9 @@ export class UserService {
       .map((res) => res['hasUser']);
   }
 
+  getUsers(): Observable<any> {
+    const url = '/user/getUserList';
+    return this.http.post(url, null);
+  }
 
 }

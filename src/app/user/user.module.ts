@@ -5,10 +5,12 @@ import {HttpClientModule} from '@angular/common/http';
 import {LoginComponent} from './login/login.component';
 import {RegisterComponent} from './register/register.component';
 import {UserService} from './user.service';
+import {RouterModule} from '@angular/router';
 
 import {InputTextModule} from 'primeng/inputtext';
 import {TooltipModule} from 'primeng/tooltip';
 import {ButtonModule} from 'primeng/button';
+import { UserListComponent } from './user-list/user-list.component';
 
 const PrimeNGModules = [
   InputTextModule,
@@ -24,9 +26,10 @@ const PrimeNGServices = [
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
-    ...PrimeNGModules
+    ...PrimeNGModules,
+    RouterModule
   ],
-  declarations: [LoginComponent, RegisterComponent],
+  declarations: [LoginComponent, RegisterComponent, UserListComponent],
   providers: [UserService]
 })
 export class UserModule {

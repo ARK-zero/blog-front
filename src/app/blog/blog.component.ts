@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import {ArticleList} from './article-list';
+import {Component, OnInit} from '@angular/core';
+import {ArticleService} from './services';
+import {ActivatedRoute} from '@angular/router';
+import 'rxjs/add/operator/switchMap';
 
 @Component({
   selector: 'app-blog',
@@ -8,11 +10,24 @@ import {ArticleList} from './article-list';
 })
 export class BlogComponent implements OnInit {
 
-  articleList = ArticleList;
+  articleList: any;
 
-  constructor() { }
+  constructor(private articleService: ArticleService, private activatedRoute: ActivatedRoute) {
+  }
 
   ngOnInit() {
+    this.getArticleList();
+  }
+
+  getArticleList() {
+    this.activatedRoute.params
+      .switchMap((params) => this.articleService.getArticleList(params.author))
+      .subscribe((articleList) => {
+        for (const item of articleList) {
+          item.first = true;
+        }
+        this.articleList = articleList;
+      });
   }
 
 }
