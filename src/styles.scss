@@ -1,7 +1,5 @@
 /* You can add global styles to this file, and also import other style files */
 * {
-  margin: 0;
-  padding: 0;
   box-sizing: border-box;
  }
 
@@ -14,4 +12,20 @@ html {
 
 ul, li {
   list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.flex-align {
+  display: flex;
+  position: relative;
+  align-content: center;
+}
+
+.ck-editor__editable {
+  min-height: 25rem;
+}
+
+.ui-dropdown {
+  min-width: 6rem;
 }

@@ -1,3 +1,16 @@
-<p>
-  article-edit works!
-</p>
+<div class="edit-page">
+
+  <div class="title flex-align">
+    <input class="input" type="text" pInputText [(ngModel)]="title" placeholder="Title Place"/>
+    <p-dropdown [options]="classifyInfo"  editable="true" autoDisplayFirst="true"
+                [(ngModel)]="classification"
+                optionLabel="_id" [filter]="true"
+                pTooltip="选择分类,可直接修改" tooltipPosition="top" tooltipEvent="hover"
+    ></p-dropdown>
+  </div>
+
+  <textarea class="editor" name="editor" #editor id="editor"></textarea>
+
+  <button class="submit-button" pButton type="button" label="Submit" (click)="submit()"></button>
+
+</div>

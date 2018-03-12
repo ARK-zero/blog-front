@@ -1,0 +1,27 @@
+.edit-page {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  padding-top: 1.5rem;
+  padding-bottom: 5rem;
+  min-height: 25rem;
+}
+
+.title {
+  margin-bottom: 1rem;
+
+  .input {
+    padding-right: 1rem;
+    flex: 1;
+  }
+}
+
+.editor {
+  flex: 1;
+}
+
+.submit-button {
+  position: absolute;
+  right: 0;
+  bottom: 2rem;
+}

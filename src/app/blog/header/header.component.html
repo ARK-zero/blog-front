@@ -5,6 +5,7 @@
 
     <div class="head-menu flex-align">
 
+      <i class="fa fa-laptop user-icon action-icon" aria-hidden="true" (click)="goHome()"></i>
 
       <div *ngIf="!userService.isLogin" class="flex-align">
         <div class="navigate" (click)="goLogin()">Sign In</div>
@@ -19,7 +20,7 @@
         <ul class="dropdown-menu">
           <li><span class="dropdown-item">{{userService.username}}</span></li>
           <li class="dropdown-divider"></li>
-          <li><span class="dropdown-item action-item">Settings</span></li>
+          <li><span class="dropdown-item action-item" (click)="goEdit()">Writing</span></li>
           <li><span class="dropdown-item action-item" (click)="logout()">Sign out</span></li>
         </ul>
       </div>

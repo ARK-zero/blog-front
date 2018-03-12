@@ -5440,7 +5440,7 @@ button.ui-button::-moz-focus-inner {
     position:absolute;
     display:none;
     padding: .25em .5em;
-    max-width: 12.5em;
+    max-width: 15em;
 }
 
 .ui-tooltip.ui-tooltip-right,

@@ -1,6 +1,9 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
+import {Router} from '@angular/router';
 import {ArticleService} from '../../services';
+import {Article} from '../common/article';
+import {UserService} from '../../../user';
 
 import 'rxjs/add/operator/switchMap';
 import {Subscription} from 'rxjs/Subscription';
@@ -14,9 +17,12 @@ export class ArticleContentComponent implements OnInit, OnDestroy {
 
   activatedRouteSubscription: Subscription;
 
-  article: any;
+  article: Article;
 
-  constructor(private articleService: ArticleService, private activatedRoute: ActivatedRoute) {
+  constructor(private articleService: ArticleService,
+              private activatedRoute: ActivatedRoute,
+              public userService: UserService,
+              private router: Router) {
   }
 
   ngOnInit() {
@@ -33,6 +39,10 @@ export class ArticleContentComponent implements OnInit, OnDestroy {
       .subscribe((article) => {
         this.article = article;
       });
+  }
+
+  edit() {
+    this.router.navigateByUrl(`/author/${this.userService.username}/edit?articleId=${this.article._id}`);
   }
 
 }

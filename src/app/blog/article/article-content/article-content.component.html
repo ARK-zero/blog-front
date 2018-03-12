@@ -1,6 +1,22 @@
-<div class="article" *ngIf="article">
-  <div>{{article.title}}</div>
-  <div>{{article.author}}</div>
-  <div>{{article.createdAt | date:'y年MM月dd日HH:mm'}}</div>
-  <div>{{article.content}}</div>
+<div class="post">
+
+  <div class="article" *ngIf="article">
+    <button *ngIf="userService.isLogin && (userService.username === article.author)" class="edit-button" pButton type="button" label="Edit" (click)="edit()"></button>
+    <div class="title">{{article.title}}</div>
+
+    <div class="author flex-align">
+      <div class="avatar"></div>
+      <div class="info">
+        <div class="name">{{article.author}}</div>
+        <div class="detail">
+          <span class="date" pTooltip="最后编辑于{{article.updatedAt | date:'y.MM.dd HH:mm'}}" tooltipPosition="bottom" tooltipEvent="hover">{{article.createdAt | date:'y.MM.dd HH:mm'}}</span>
+          <i class="fa fa-tag" aria-hidden="true" style="margin-left: 1rem"></i>
+          <span>{{article.classification}}</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="article-content" [innerHTML]="article.content"></div>
+  </div>
+
 </div>

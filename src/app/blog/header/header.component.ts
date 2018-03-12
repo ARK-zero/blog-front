@@ -26,4 +26,12 @@ export class HeaderComponent implements OnInit {
   logout() {
     this.userService.logout();
   }
+
+  goHome() {
+    this.router.navigateByUrl('/');
+  }
+
+  goEdit() {
+    this.router.navigateByUrl(`/author/${this.userService.username}/edit`);
+  }
 }
