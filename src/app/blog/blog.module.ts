@@ -7,7 +7,7 @@ import {TooltipModule} from 'primeng/tooltip';
 import {BlogComponent} from './blog.component';
 import {HeaderComponent} from './header/header.component';
 import {ArticleListComponent} from './article/article-list/article-list.component';
-import {ArticleEditeComponent} from './article/article-edite/article-edite.component';
+import {ArticleEditComponent} from './article/article-edit/article-edit.component';
 import {ArticleContentComponent} from './article/article-content/article-content.component';
 import {ListItemComponent} from './article/article-list/list-item/list-item.component';
 
@@ -21,14 +21,15 @@ const BlogComponents = [
   BlogComponent,
   HeaderComponent,
   ArticleListComponent,
-  ArticleEditeComponent,
+  ArticleEditComponent,
   ArticleContentComponent,
   ListItemComponent
 ];
 
 const routes: Routes = [
   {path: ':author', component: BlogComponent, children: [
-    {path: ':articleId', component: ArticleContentComponent}
+    {path: 'article/:articleId', component: ArticleContentComponent},
+    {path: 'edit', component: ArticleEditComponent}
   ]}
 ];
 

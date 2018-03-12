@@ -9,7 +9,7 @@
 </ng-container>
 
 <ng-container *ngIf="articleItem.routerLink">
-  <a class="routerLink" [routerLink]="articleItem.routerLink" routerLinkActive="routerLinkActive">
+  <a class="routerLink" routerLink="article/{{articleItem.routerLink}}" routerLinkActive="routerLinkActive">
     <span class="item-title" [pTooltip]="articleItem._id" tooltipPosition="left" tooltipEvent="hover">{{articleItem._id}}</span>
   </a>
 </ng-container>
