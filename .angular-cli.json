@@ -26,7 +26,6 @@
         "styles.scss"
       ],
       "scripts": [
-        "../node_modules/@ckeditor/ckeditor5-build-classic/build/ckeditor.js"
       ],
       "environmentSource": "environments/environment.ts",
       "environments": {

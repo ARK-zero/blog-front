@@ -1,4 +1,4 @@
-import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
+import {Component, ElementRef, Inject, OnInit, Renderer2, ViewChild} from '@angular/core';
 import {MessageService} from 'primeng/components/common/messageservice';
 import {ActivatedRoute} from '@angular/router';
 import {Router} from '@angular/router';
@@ -7,8 +7,9 @@ import {ArticleService} from '../../services';
 import {UserService} from '../../../user';
 
 import 'rxjs/add/operator/switchMap';
+import {DOCUMENT} from '@angular/platform-browser';
 
-declare let ClassicEditor: any;
+// declare let ClassicEditor: any;
 
 @Component({
   selector: 'app-article-edit',
@@ -28,11 +29,13 @@ export class ArticleEditComponent implements OnInit {
   classifyInfo: Array<any>;
 
   ClassicEditor: any;
-
+  ckeditor = window['CKEDITOR'];
   constructor(private messageService: MessageService,
               private articleService: ArticleService,
               private userService: UserService,
               private router: Router,
+              private _renderer2: Renderer2,
+              @Inject(DOCUMENT) private _document,
               private activatedRoute: ActivatedRoute) {
     this.article = new Article();
   }
@@ -49,7 +52,8 @@ export class ArticleEditComponent implements OnInit {
         .subscribe((article) => {
           this.title = article.title;
           this.classification = article.classification;
-          this.ClassicEditor.setData(article.content);
+          this.ckeditor.instances.editor.setData(article.content);
+          // this.ClassicEditor.setData(article.content);
           this.article = article;
         });
     }
@@ -62,14 +66,18 @@ export class ArticleEditComponent implements OnInit {
   }
 
   editorInit() {
-    ClassicEditor
-      .create(this.editor.nativeElement)
-      .then((editor) => {
-        this.ClassicEditor = editor;
-      })
-      .catch(error => {
-        console.error(error);
-      });
+    // ClassicEditor
+    //   .create(this.editor.nativeElement)
+    //   .then((editor) => {
+    //     this.ClassicEditor = editor;
+    //   })
+    //   .catch(error => {
+    //     console.error(error);
+    //   });
+    // ClassicEditor.CKEDITOR.replace(this.editor.nativeElement);
+    // CKEDITOR.replace(this.editor.nativeElement);
+    console.log(this.ckeditor)
+    this.ckeditor.replace('editor');
   }
 
   submit() {
@@ -94,9 +102,11 @@ export class ArticleEditComponent implements OnInit {
     this.article.title = this.title;
     this.article.author = this.author;
     this.article.classification = this.classification._id || this.classification;
-    this.article.content = this.ClassicEditor.getData() || '';
-
+    // this.article.content = this.ClassicEditor.getData() || '';
+    this.article.content = this.ckeditor.instances.editor.getData() || '';
+    console.log(this.article)
     this.articleService.saveArticle(this.article).subscribe((response) => {
+      console.log(response)
       if (response['_id']) {
         this.messageService.add({
           severity: 'success',
