@@ -13,10 +13,10 @@
  * (1) http://ckeditor.com/builder
  *     Visit online builder to build CKEditor from scratch.
  *
- * (2) http://ckeditor.com/builder/68db378e1a2f5ab3d392d0bda0a1f5b7
+ * (2) http://ckeditor.com/builder/1821c32691313d90ec1a83d9f8c60aae
  *     Visit online builder to build CKEditor, starting with the same setup as before.
  *
- * (3) http://ckeditor.com/builder/download/68db378e1a2f5ab3d392d0bda0a1f5b7
+ * (3) http://ckeditor.com/builder/download/1821c32691313d90ec1a83d9f8c60aae
  *     Straight download link to the latest version of CKEditor (Optimized) with the same setup as before.
  *
  * NOTE:
@@ -25,7 +25,7 @@
  */
 
 var CKBUILDER_CONFIG = {
-	skin: 'kama',
+	skin: 'moono-dark',
 	preset: 'full',
 	ignore: [
 		'.DS_Store',
@@ -116,7 +116,6 @@ var CKBUILDER_CONFIG = {
 		'wysiwygarea' : 1
 	},
 	languages : {
-		'en' : 1,
-		'zh-cn' : 1
+		'en' : 1
 	}
 };

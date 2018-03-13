@@ -77,7 +77,7 @@ export class ArticleEditComponent implements OnInit {
     // ClassicEditor.CKEDITOR.replace(this.editor.nativeElement);
     // CKEDITOR.replace(this.editor.nativeElement);
     console.log(this.ckeditor)
-    this.ckeditor.replace('editor');
+    this.ckeditor.replace('editor',{extraPlugins: 'codesnippet',codeSnippet_theme: 'zenburn'});
   }
 
   submit() {
