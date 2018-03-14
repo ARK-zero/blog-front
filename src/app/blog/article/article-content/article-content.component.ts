@@ -7,6 +7,7 @@ import {UserService} from '../../../user';
 
 import 'rxjs/add/operator/switchMap';
 import {Subscription} from 'rxjs/Subscription';
+import {DomSanitizer} from '@angular/platform-browser';
 
 @Component({
   selector: 'app-article-content',
@@ -22,7 +23,8 @@ export class ArticleContentComponent implements OnInit, OnDestroy {
   constructor(private articleService: ArticleService,
               private activatedRoute: ActivatedRoute,
               public userService: UserService,
-              private router: Router) {
+              private router: Router,
+              private domSanitizer: DomSanitizer) {
   }
 
   ngOnInit() {
@@ -38,6 +40,8 @@ export class ArticleContentComponent implements OnInit, OnDestroy {
       .switchMap((params) => this.articleService.getArticle(params.articleId))
       .subscribe((article) => {
         this.article = article;
+        console.log(this.article.content);
+        this.article.content = this.domSanitizer.bypassSecurityTrustHtml(article.content);
       });
   }
 

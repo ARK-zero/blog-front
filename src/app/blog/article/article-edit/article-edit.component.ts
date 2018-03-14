@@ -54,9 +54,11 @@ export class ArticleEditComponent implements OnInit {
         .subscribe((article) => {
           this.title = article.title;
           this.classification = article.classification;
-          this.ckeditor.instances.editor.setData(article.content);
           this.articleId = article._id;
           this.article = article;
+          this.ckeditor.instances.editor.setData(article.content);
+
+          console.log(article.content);
         });
     }
   }
@@ -94,6 +96,7 @@ export class ArticleEditComponent implements OnInit {
     this.article.author = this.author;
     this.article.classification = this.classification._id || this.classification;
     this.article.content = this.ckeditor.instances.editor.getData() || '';
+    console.log(this.article.content);
     this.articleService.saveArticle(this.article).subscribe((response) => {
       if (response['_id']) {
         this.messageService.add({
