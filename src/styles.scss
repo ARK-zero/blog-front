@@ -16,6 +16,10 @@ ul, li {
   padding: 0;
 }
 
+.article-content {
+  @import "./assets/ckeditor/contents.scss";
+}
+
 .flex-align {
   display: flex;
   position: relative;
@@ -26,14 +30,5 @@ ul, li {
   min-width: 6rem;
 }
 
-//pre {
-//  background-color: #f5f5f5;
-//  border: 1px solid #ccc;
-//  font-family: Droid Sans Mono,monospace;
-//  line-height: 1.2;
-//  font-size: .875rem;
-//  padding: 1rem;
-//  code {
-//    font-family: Droid Sans Mono,monospace;
-//  }
-//}
+
+

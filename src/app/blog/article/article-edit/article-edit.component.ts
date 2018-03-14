@@ -57,8 +57,6 @@ export class ArticleEditComponent implements OnInit {
           this.articleId = article._id;
           this.article = article;
           this.ckeditor.instances.editor.setData(article.content);
-
-          console.log(article.content);
         });
     }
   }
@@ -70,7 +68,7 @@ export class ArticleEditComponent implements OnInit {
   }
 
   editorInit() {
-    this.ckeditor.replace('editor');
+    this.ckeditor.replace('editor', {extraPlugins: 'codesnippet', codeSnippet_theme: 'zenburn'});
   }
 
   submit() {
@@ -96,7 +94,6 @@ export class ArticleEditComponent implements OnInit {
     this.article.author = this.author;
     this.article.classification = this.classification._id || this.classification;
     this.article.content = this.ckeditor.instances.editor.getData() || '';
-    console.log(this.article.content);
     this.articleService.saveArticle(this.article).subscribe((response) => {
       if (response['_id']) {
         this.messageService.add({

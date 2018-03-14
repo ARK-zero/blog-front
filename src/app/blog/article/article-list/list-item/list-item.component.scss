@@ -37,6 +37,9 @@ a {
   padding: .5rem;
   cursor: pointer;
   color: $menu-color;
+  .fa-angle-right {
+    font-size: .75rem;
+  }
   &:link {
     color: $menu-color;
   }
