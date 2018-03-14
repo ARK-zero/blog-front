@@ -68,7 +68,11 @@ export class ArticleEditComponent implements OnInit {
   }
 
   editorInit() {
-    this.ckeditor.replace('editor', {extraPlugins: 'codesnippet', codeSnippet_theme: 'zenburn'});
+    this.ckeditor.replace('editor', {
+      extraPlugins: 'codesnippet,codemirror',
+      codeSnippet_theme: 'monokai_sublime',
+      height: 356,
+    });
   }
 
   submit() {
