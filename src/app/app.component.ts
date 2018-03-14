@@ -4,7 +4,7 @@ import {UserService} from './user';
 @Component({
   selector: 'app-root',
   template: `<router-outlet></router-outlet>
-  <p-growl [life]="3000"></p-growl>`
+  <p-growl [life]="2000"></p-growl>`
 })
 export class AppComponent {
 
