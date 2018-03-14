@@ -29,7 +29,7 @@ export class ArticleService {
     });
   }
 
-  getClassification(author): Observable<any> {
+  getClassifications(author): Observable<any> {
     const url = '/article/getClassification';
     return this.http.post(url, {author: author}).catch((err) => {
       throw err.message;

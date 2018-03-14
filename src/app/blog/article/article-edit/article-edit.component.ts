@@ -1,15 +1,14 @@
-import {Component, ElementRef, Inject, OnInit, Renderer2, ViewChild} from '@angular/core';
+import {Component, ElementRef, Inject, OnInit, Renderer2, ViewChild, Optional} from '@angular/core';
 import {MessageService} from 'primeng/components/common/messageservice';
 import {ActivatedRoute} from '@angular/router';
 import {Router} from '@angular/router';
 import {Article} from '../common/article';
 import {ArticleService} from '../../services';
 import {UserService} from '../../../user';
+import {BlogComponent} from '../../blog.component';
 
 import 'rxjs/add/operator/switchMap';
 import {DOCUMENT} from '@angular/platform-browser';
-
-// declare let ClassicEditor: any;
 
 @Component({
   selector: 'app-article-edit',
@@ -28,24 +27,27 @@ export class ArticleEditComponent implements OnInit {
   classification: any;
   classifyInfo: Array<any>;
 
-  ClassicEditor: any;
+  articleId: string;
+
   ckeditor = window['CKEDITOR'];
+
   constructor(private messageService: MessageService,
               private articleService: ArticleService,
               private userService: UserService,
               private router: Router,
               private _renderer2: Renderer2,
               @Inject(DOCUMENT) private _document,
-              private activatedRoute: ActivatedRoute) {
+              private activatedRoute: ActivatedRoute,
+              @Optional() public blogComponent: BlogComponent
+  ) {
     this.article = new Article();
   }
 
   ngOnInit() {
     this.editorInit();
-    this.getClassification();
+    this.getClassifications();
     this.author = this.userService.username;
 
-    console.log(this.activatedRoute.snapshot.queryParams['articleId']);
     if (this.activatedRoute.snapshot.queryParams['articleId']) {
       this.activatedRoute.queryParams
         .switchMap((params) => this.articleService.getArticle(params.articleId))
@@ -53,31 +55,20 @@ export class ArticleEditComponent implements OnInit {
           this.title = article.title;
           this.classification = article.classification;
           this.ckeditor.instances.editor.setData(article.content);
-          // this.ClassicEditor.setData(article.content);
+          this.articleId = article._id;
           this.article = article;
         });
     }
   }
 
-  getClassification() {
-    this.articleService.getClassification(this.userService.username).subscribe((classifyInfo) => {
+  getClassifications() {
+    this.articleService.getClassifications(this.userService.username).subscribe((classifyInfo) => {
       this.classifyInfo = classifyInfo;
     });
   }
 
   editorInit() {
-    // ClassicEditor
-    //   .create(this.editor.nativeElement)
-    //   .then((editor) => {
-    //     this.ClassicEditor = editor;
-    //   })
-    //   .catch(error => {
-    //     console.error(error);
-    //   });
-    // ClassicEditor.CKEDITOR.replace(this.editor.nativeElement);
-    // CKEDITOR.replace(this.editor.nativeElement);
-    console.log(this.ckeditor)
-    this.ckeditor.replace('editor',{extraPlugins: 'codesnippet',codeSnippet_theme: 'zenburn'});
+    this.ckeditor.replace('editor', {extraPlugins: 'codesnippet', codeSnippet_theme: 'zenburn'});
   }
 
   submit() {
@@ -102,11 +93,8 @@ export class ArticleEditComponent implements OnInit {
     this.article.title = this.title;
     this.article.author = this.author;
     this.article.classification = this.classification._id || this.classification;
-    // this.article.content = this.ClassicEditor.getData() || '';
     this.article.content = this.ckeditor.instances.editor.getData() || '';
-    console.log(this.article)
     this.articleService.saveArticle(this.article).subscribe((response) => {
-      console.log(response)
       if (response['_id']) {
         this.messageService.add({
           severity: 'success',
@@ -114,6 +102,7 @@ export class ArticleEditComponent implements OnInit {
           detail: `Saved Success`
         });
         this.router.navigateByUrl(`/author/${this.userService.username}/article/${response['_id']}`);
+        this.blogComponent.updateArticleList(this.userService.username);
       } else {
         this.messageService.add({
           severity: 'warn',

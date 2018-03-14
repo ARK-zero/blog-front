@@ -30,4 +30,14 @@ export class BlogComponent implements OnInit {
       });
   }
 
+  updateArticleList(author) {
+    this.articleService.getArticleList(author)
+      .subscribe((articleList) => {
+      for (const item of articleList) {
+        item.first = true;
+      }
+      this.articleList = articleList;
+    });
+  }
+
 }
