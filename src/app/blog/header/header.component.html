@@ -18,7 +18,7 @@
           <i class="fa fa-sort-desc" aria-hidden="true"></i>
         </div>
         <ul class="dropdown-menu">
-          <li><span class="dropdown-item">{{userService.username}}</span></li>
+          <li><span class="dropdown-item action-item" (click)="goUser()">{{userService.username}}</span></li>
           <li class="dropdown-divider"></li>
           <li><span class="dropdown-item action-item" (click)="goEdit()">Writing</span></li>
           <li><span class="dropdown-item action-item" (click)="logout()">Sign out</span></li>

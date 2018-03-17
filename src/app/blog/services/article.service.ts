@@ -6,6 +6,7 @@ import {Article} from '../article/common/article';
 
 import {Observable} from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/do';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/observable/of';
 
@@ -24,9 +25,16 @@ export class ArticleService {
 
   getArticle(articleId): Observable<any> {
     const url = '/article/getArticle';
-    return this.http.post(url, {articleId: articleId}).catch((err) => {
-      throw err.message;
-    });
+    return this.http.post(url, {articleId: articleId})
+      .catch((err) => {
+        this.messageService.add({
+          severity: 'error',
+          summary: 'Article Message',
+          detail: `The article you looking for was noExisted`
+        });
+        this.router.navigateByUrl('/');
+        throw err.message;
+      });
   }
 
   getClassifications(author): Observable<any> {
@@ -45,8 +53,21 @@ export class ArticleService {
           summary: 'Article Message',
           detail: `Network Error`
         });
-      throw err.message;
-    });
+        throw err.message;
+      });
+  }
+
+  deleteArticle(articleId) {
+    const url = '/article/delete';
+    return this.http.post(url, {articleId: articleId})
+      .catch((err) => {
+        this.messageService.add({
+          severity: 'error',
+          summary: 'Article Message',
+          detail: `Network Error`
+        });
+        throw err.message;
+      });
   }
 
 }

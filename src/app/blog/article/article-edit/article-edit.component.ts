@@ -1,4 +1,4 @@
-import {Component, ElementRef, Inject, OnInit, Renderer2, ViewChild, Optional} from '@angular/core';
+import {Component, ElementRef, Inject, OnInit, Renderer2, ViewChild, Optional, OnDestroy} from '@angular/core';
 import {MessageService} from 'primeng/components/common/messageservice';
 import {ActivatedRoute} from '@angular/router';
 import {Router} from '@angular/router';
@@ -6,40 +6,38 @@ import {Article} from '../common/article';
 import {ArticleService} from '../../services';
 import {UserService} from '../../../user';
 import {BlogComponent} from '../../blog.component';
+import {TinymceConfig} from '../../config';
 
 import 'rxjs/add/operator/switchMap';
-import {DOCUMENT} from '@angular/platform-browser';
+
+declare var tinymce: any;
 
 @Component({
   selector: 'app-article-edit',
   templateUrl: './article-edit.component.html',
   styleUrls: ['./article-edit.component.scss']
 })
-export class ArticleEditComponent implements OnInit {
+export class ArticleEditComponent implements OnInit, OnDestroy {
 
-  @ViewChild('editor') editor: ElementRef;
+  @ViewChild('editor') textarea: ElementRef;
 
   article: Article;
 
   author: string;
   title: string;
-  content: string;
+  // content: string;
   classification: any;
   classifyInfo: Array<any>;
 
   articleId: string;
-
-  ckeditor = window['CKEDITOR'];
+  editor: any;
 
   constructor(private messageService: MessageService,
               private articleService: ArticleService,
               private userService: UserService,
               private router: Router,
-              private _renderer2: Renderer2,
-              @Inject(DOCUMENT) private _document,
               private activatedRoute: ActivatedRoute,
-              @Optional() public blogComponent: BlogComponent
-  ) {
+              @Optional() public blogComponent: BlogComponent) {
     this.article = new Article();
   }
 
@@ -52,26 +50,32 @@ export class ArticleEditComponent implements OnInit {
       this.activatedRoute.queryParams
         .switchMap((params) => this.articleService.getArticle(params.articleId))
         .subscribe((article) => {
+          this.article = article;
           this.title = article.title;
           this.classification = article.classification;
           this.articleId = article._id;
-          this.article = article;
-          this.ckeditor.instances.editor.setData(article.content);
+          this.editor.setContent(article.content);
         });
     }
+  }
+
+  ngOnDestroy() {
+  }
+
+  editorInit() {
+    const config =  Object.assign(TinymceConfig, {
+      target: this.textarea.nativeElement,
+      setup: editor => {
+        console.log(editor);
+        this.editor = editor;
+      }
+    });
+    tinymce.init(config);
   }
 
   getClassifications() {
     this.articleService.getClassifications(this.userService.username).subscribe((classifyInfo) => {
       this.classifyInfo = classifyInfo;
-    });
-  }
-
-  editorInit() {
-    this.ckeditor.replace('editor', {
-      extraPlugins: 'codesnippet,codemirror',
-      codeSnippet_theme: 'monokai_sublime',
-      height: 356,
     });
   }
 
@@ -97,7 +101,7 @@ export class ArticleEditComponent implements OnInit {
     this.article.title = this.title;
     this.article.author = this.author;
     this.article.classification = this.classification._id || this.classification;
-    this.article.content = this.ckeditor.instances.editor.getData() || '';
+    this.article.content = this.editor.getContent();
     this.articleService.saveArticle(this.article).subscribe((response) => {
       if (response['_id']) {
         this.messageService.add({

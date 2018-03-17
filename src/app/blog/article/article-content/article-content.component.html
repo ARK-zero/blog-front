@@ -1,7 +1,12 @@
 <div class="post">
 
   <div class="article" *ngIf="article">
-    <button *ngIf="userService.isLogin && (userService.username === article.author)" class="edit-button" pButton type="button" label="Edit" (click)="edit()"></button>
+    <div *ngIf="userService.isLogin && (userService.username === article.author)" class="edit-button" >
+      <button pButton type="button" label="Edit" (click)="edit()"></button>
+      <button pButton type="button" label="Delete" (click)="delete()"></button>
+    </div>
+
+
     <div class="title">{{article.title}}</div>
 
     <div class="author flex-align">
@@ -16,7 +21,9 @@
       </div>
     </div>
 
-    <div class="article-content cke_editable cke_editable_themed cke_contents_ltr cke_show_borders" [innerHTML]="article.content"></div>
+    <div class="article-content"
+         [innerHTML]="article.content"
+    ></div>
   </div>
 
 </div>

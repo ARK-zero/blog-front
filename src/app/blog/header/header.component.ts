@@ -34,4 +34,8 @@ export class HeaderComponent implements OnInit {
   goEdit() {
     this.router.navigateByUrl(`/author/${this.userService.username}/edit`);
   }
+
+  goUser() {
+    this.router.navigateByUrl(`/author/${this.userService.username}`);
+  }
 }

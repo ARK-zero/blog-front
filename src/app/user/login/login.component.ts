@@ -45,7 +45,7 @@ export class LoginComponent implements OnInit {
           });
           this.userService.isLogin = true;
           this.userService.username = this.loginForm.value.username;
-          this.router.navigateByUrl('/');
+          this.router.navigateByUrl(`/author/${this.userService.username}`);
         } else {
           this.messageService.add({
             severity: 'warn',

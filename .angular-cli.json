@@ -23,9 +23,13 @@
         "../node_modules/font-awesome/css/font-awesome.min.css",
         "assets/primeng/primeng.css",
         "assets/primeng/themes/omega/theme.scss",
+        "assets/prism/prism.css",
         "styles.scss"
       ],
       "scripts": [
+        "../node_modules/jquery/dist/jquery.js",
+        "assets/tinymce/tinymce.min.js",
+        "assets/prism/prism.js"
       ],
       "environmentSource": "environments/environment.ts",
       "environments": {

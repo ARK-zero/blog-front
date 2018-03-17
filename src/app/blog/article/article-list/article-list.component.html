@@ -2,4 +2,5 @@
   <li app-list-item *ngFor="let articleItem of articleList; index as itemIndex"
       [articleItem]="articleItem" [index]="itemIndex" (expandToggle)="expandToggle($event)">
   </li>
+  <div *ngIf="articleList.length === 0">nothing to show</div>
 </ul>

@@ -5,6 +5,7 @@ import {RouterModule, Routes} from '@angular/router';
 
 import {MessageService} from 'primeng/components/common/messageservice';
 import {GrowlModule} from 'primeng/growl';
+import {ScrollPanelModule} from 'primeng/scrollpanel';
 
 import {AppComponent} from './app.component';
 import {UserModule, LoginComponent, RegisterComponent, UserListComponent} from './user';
@@ -12,7 +13,8 @@ import {UserModule, LoginComponent, RegisterComponent, UserListComponent} from '
 import {LoginGuard} from './auth-guards';
 
 const PrimeNGModules = [
-  GrowlModule
+  GrowlModule,
+  ScrollPanelModule
 ];
 const PrimeNGServices = [
   MessageService

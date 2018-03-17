@@ -3,7 +3,7 @@
   box-sizing: border-box;
  }
 
-html {
+html, body {
   height: 100%;
   width: 100%;
   font-size: 16px;
@@ -16,19 +16,24 @@ ul, li {
   padding: 0;
 }
 
-.article-content {
-  @import "./assets/ckeditor/contents.scss";
-}
-
 .flex-align {
   display: flex;
   position: relative;
   align-content: center;
 }
 
-.ui-dropdown {
-  min-width: 6rem;
+
+::-webkit-scrollbar {
+  width: .5rem;
+  height: .5rem;
 }
 
+::-webkit-scrollbar-thumb {
+  background: #c2c2c2;
+  cursor: pointer;
+  border-radius: .5rem;
+}
 
-
+::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0);
+}

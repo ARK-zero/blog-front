@@ -3,8 +3,12 @@ import {UserService} from './user';
 
 @Component({
   selector: 'app-root',
-  template: `<router-outlet></router-outlet>
-  <p-growl [life]="2000"></p-growl>`
+  template: `    
+    <!--<p-scrollPanel [style]="{width: '100%', height: '100%'}">-->
+      <router-outlet></router-outlet>
+      <p-growl [life]="2000"></p-growl>
+    <!--</p-scrollPanel>-->
+  `
 })
 export class AppComponent {
 
