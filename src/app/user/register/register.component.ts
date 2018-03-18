@@ -29,11 +29,11 @@ export class RegisterComponent implements OnInit {
     this.registerForm = this.formBuilder.group({
       username: ['', [
         Validators.required,
-        Validators.pattern(/^[\u4e00-\u9fa5\w\d]{2,8}$/)
+        Validators.pattern(/^[\u4e00-\u9fa5\w\d]{2,12}$/)
       ]],
       password: ['', [
         Validators.required,
-        Validators.pattern(/^[\w\d!@#$%^&*]{6,16}$/)
+        Validators.pattern(/^[\w\d!@#$%^&*]{8,30}$/)
       ]],
       inviteCode: ['', [
         Validators.required
@@ -62,7 +62,7 @@ export class RegisterComponent implements OnInit {
           summary: 'Register Message',
           detail: 'SignUp Success, Welcome Back'
         });
-        this.registerForm.reset();
+        this.login(this.registerForm.value);
       } else {
         this.messageService.add({
           severity: 'warn',
@@ -72,6 +72,22 @@ export class RegisterComponent implements OnInit {
         this.registerForm.reset();
       }
     });
+  }
+
+  login(user) {
+    this.userService.login(user)
+      .subscribe((success) => {
+        if (success) {
+          this.messageService.add({
+            severity: 'success',
+            summary: 'Login Message',
+            detail: 'Login Success, Welcome Back'
+          });
+          this.userService.isLogin = true;
+          this.userService.username = user.username;
+          this.router.navigateByUrl(`/author/${this.userService.username}`);
+        }
+      });
   }
 
   goLogin() {

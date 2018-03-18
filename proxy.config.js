@@ -7,7 +7,7 @@ const PROXY_CONFIG = [
       '/user',
       '/article'
     ],
-    target: 'http://localhost:3000',
+    target: 'http://localhost:80',
     secure: false
   }
 ];

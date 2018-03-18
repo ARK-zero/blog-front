@@ -1,14 +1,14 @@
 import {Component, OnInit} from '@angular/core';
-import {ArticleService} from './services';
+import {ArticleService} from '../services';
 import {ActivatedRoute} from '@angular/router';
 import 'rxjs/add/operator/switchMap';
 
 @Component({
   selector: 'app-blog',
-  templateUrl: './blog.component.html',
-  styleUrls: ['./blog.component.scss']
+  templateUrl: './blog-author.component.html',
+  styleUrls: ['./blog-author.component.scss']
 })
-export class BlogComponent implements OnInit {
+export class BlogAuthorComponent implements OnInit {
 
   articleList: any;
   isLoading = true;

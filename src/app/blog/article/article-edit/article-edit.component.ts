@@ -5,8 +5,8 @@ import {Router} from '@angular/router';
 import {Article} from '../common/article';
 import {ArticleService} from '../../services';
 import {UserService} from '../../../user';
-import {BlogComponent} from '../../blog.component';
-import {TinymceConfig} from '../../../config';
+import {BlogAuthorComponent} from '../../blog-author/blog-author.component';
+import {TinymceConfig} from '../../../_config';
 
 import 'rxjs/add/operator/switchMap';
 
@@ -37,7 +37,7 @@ export class ArticleEditComponent implements OnInit, OnDestroy {
               private userService: UserService,
               private router: Router,
               private activatedRoute: ActivatedRoute,
-              @Optional() public blogComponent: BlogComponent) {
+              @Optional() public blogAuthorComponent: BlogAuthorComponent) {
     this.article = new Article();
   }
 
@@ -110,7 +110,7 @@ export class ArticleEditComponent implements OnInit, OnDestroy {
           detail: `Saved Success`
         });
         this.router.navigateByUrl(`/author/${this.userService.username}/article/${response['_id']}`);
-        this.blogComponent.updateArticleList(this.userService.username);
+        this.blogAuthorComponent.updateArticleList(this.userService.username);
       } else {
         this.messageService.add({
           severity: 'warn',

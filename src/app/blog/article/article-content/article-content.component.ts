@@ -5,7 +5,7 @@ import {Router} from '@angular/router';
 import {ArticleService} from '../../services';
 import {Article} from '../common/article';
 import {UserService} from '../../../user';
-import {BlogComponent} from '../../blog.component';
+import {BlogAuthorComponent} from '../../blog-author/blog-author.component';
 import {ConfirmationService} from 'primeng/api';
 
 import 'rxjs/add/operator/switchMap';
@@ -35,7 +35,7 @@ export class ArticleContentComponent implements OnInit, OnDestroy {
               public docTitle: Title,
               private confirmationService: ConfirmationService,
               private domSanitizer: DomSanitizer,
-              @Optional() public blogComponent: BlogComponent) {
+              @Optional() public blogAuthorComponent: BlogAuthorComponent) {
   }
 
   ngOnInit() {
@@ -83,7 +83,7 @@ export class ArticleContentComponent implements OnInit, OnDestroy {
             summary: 'Article Message',
             detail: `删除成功`
           });
-          this.blogComponent.updateArticleList(this.userService.username);
+          this.blogAuthorComponent.updateArticleList(this.userService.username);
           this.router.navigateByUrl(`/author/${this.userService.username}`);
         } else {
           this.messageService.add({

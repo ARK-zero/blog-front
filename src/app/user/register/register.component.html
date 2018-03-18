@@ -5,17 +5,17 @@
 
   <form [formGroup]='registerForm'>
     <div class='ui-float-label input'>
-      <input formControlName='username' id='username' type='text' pInputText pTooltip="/^[\u4e00-\u9fa5\w\d]{2,8}$/" tooltipPosition="top" tooltipEvent="focus">
+      <input formControlName='username' id='username' type='text' pInputText pTooltip="/^[\u4e00-\u9fa5\w\d]{2,12}$/" tooltipPosition="top" tooltipEvent="focus">
       <label for='username'>username</label>
     </div>
 
     <div class='ui-float-label input'>
-      <input formControlName='password' id='password' type='password' pInputText pTooltip="/^[\w\d!@#$%^&*]{6,16}$/" tooltipPosition="top" tooltipEvent="focus">
+      <input formControlName='password' id='password' type='password' pInputText pTooltip="/^[\w\d!@#$%^&*]{8,30}$/" tooltipPosition="top" tooltipEvent="focus">
       <label for='password'>password</label>
     </div>
 
     <div class='ui-float-label input'>
-      <input formControlName='inviteCode' id='inviteCode' type='password' pInputText>
+      <input formControlName='inviteCode' id='inviteCode' type='text' pInputText>
       <label for='inviteCode'>inviteCode</label>
     </div>
 
