@@ -6,9 +6,9 @@ export const TinymceConfig = {
   skin_url: '/assets/tinymce/skins/lightgray',
   codesample_content_css: '/assets/prism/prism.css',
 
-  statusbar: true,
+  statusbar: false,
   autoresize_min_height: 500,
-  language_url: '/assets/tinymce/langs/zh_CN.js',
+  // language_url: '/assets/tinymce/langs/zh_CN.js',
 
   plugins: 'advlist anchor autolink autoresize charmap code codesample ' +
   'colorpicker directionality fullscreen hr image imagetools ' +

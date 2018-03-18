@@ -13,7 +13,8 @@ export class Article {
   author: string;
   classification: string;
   content: any;
-  createdAt?: Date;
-  updatedAt?: Date;
+  createdAt?: any;
+  updatedAt?: any;
   _id?: string;
+  src?: any;
 }

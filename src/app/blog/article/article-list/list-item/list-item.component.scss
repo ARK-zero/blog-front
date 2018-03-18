@@ -16,7 +16,8 @@ a {
     display: none;
   }
   &.active {
-    background: rgba(0, 172, 0, 0.52);
+    background: #2399e5;
+    color: #FFFFFF;
     border-bottom-left-radius: 0;
     border-bottom-right-radius: 0;
     box-shadow: 0 .1rem .1rem rgba(68, 68, 68, 0.3);
@@ -60,5 +61,5 @@ a {
 }
 
 .routerLinkActive {
-  color: rgb(255, 132, 117);
+  color: #2399e5;
 }

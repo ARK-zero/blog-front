@@ -1,6 +1,9 @@
 <ul id="articleList" class="articleList">
-  <li app-list-item *ngFor="let articleItem of articleList; index as itemIndex"
-      [articleItem]="articleItem" [index]="itemIndex" (expandToggle)="expandToggle($event)">
-  </li>
-  <div *ngIf="articleList.length === 0">nothing to show</div>
+  <ng-container>
+    <li app-list-item *ngFor="let articleItem of articleList; index as itemIndex"
+        [articleItem]="articleItem" [index]="itemIndex" (expandToggle)="expandToggle($event)">
+    </li>
+  </ng-container>
+  <div *ngIf="isLoading">Loading</div>
+  <div *ngIf="!isLoading && !articleList || articleList.length === 0">nothing to show</div>
 </ul>

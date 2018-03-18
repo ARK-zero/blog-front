@@ -11,6 +11,7 @@ import 'rxjs/add/operator/switchMap';
 export class BlogComponent implements OnInit {
 
   articleList: any;
+  isLoading = true;
 
   constructor(private articleService: ArticleService, private activatedRoute: ActivatedRoute) {
   }
@@ -27,6 +28,7 @@ export class BlogComponent implements OnInit {
           item.first = true;
         }
         this.articleList = articleList;
+        this.isLoading = false;
       });
   }
 

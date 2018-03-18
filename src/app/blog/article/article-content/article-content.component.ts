@@ -6,11 +6,12 @@ import {ArticleService} from '../../services';
 import {Article} from '../common/article';
 import {UserService} from '../../../user';
 import {BlogComponent} from '../../blog.component';
+import {ConfirmationService} from 'primeng/api';
 
 import 'rxjs/add/operator/switchMap';
 import 'rxjs/add/operator/do';
 import {Subscription} from 'rxjs/Subscription';
-import {DomSanitizer} from '@angular/platform-browser';
+import {DomSanitizer, Title} from '@angular/platform-browser';
 
 declare var Prism: any;
 declare var $: any;
@@ -31,6 +32,8 @@ export class ArticleContentComponent implements OnInit, OnDestroy {
               private activatedRoute: ActivatedRoute,
               public userService: UserService,
               private router: Router,
+              public docTitle: Title,
+              private confirmationService: ConfirmationService,
               private domSanitizer: DomSanitizer,
               @Optional() public blogComponent: BlogComponent) {
   }
@@ -48,6 +51,7 @@ export class ArticleContentComponent implements OnInit, OnDestroy {
       .switchMap((params) => this.articleService.getArticle(params.articleId))
       .subscribe((article) => {
         if (article) {
+          this.docTitle.setTitle(`${article.title}`);
           this.article = article;
           this.article.content = this.domSanitizer.bypassSecurityTrustHtml(article.content);
 
@@ -70,7 +74,7 @@ export class ArticleContentComponent implements OnInit, OnDestroy {
     this.router.navigateByUrl(`/author/${this.userService.username}/edit?articleId=${this.article._id}`);
   }
 
-  delete() {
+  deleteArticle() {
     this.articleService.deleteArticle(this.article._id)
       .subscribe((res) => {
         if (res['delete']) {
@@ -88,7 +92,18 @@ export class ArticleContentComponent implements OnInit, OnDestroy {
             detail: `服务器错误，删除失败`
           });
         }
-
       });
+  }
+
+  deleteConfirm() {
+    this.confirmationService.confirm({
+      message: '确定删除?',
+      header: 'Confirmation',
+      icon: 'fa fa-exclamation-circle',
+      accept: () => {
+        this.deleteArticle();
+      },
+      reject: () => {}
+    });
   }
 }

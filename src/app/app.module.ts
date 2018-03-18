@@ -9,6 +9,7 @@ import {ScrollPanelModule} from 'primeng/scrollpanel';
 
 import {AppComponent} from './app.component';
 import {UserModule, LoginComponent, RegisterComponent, UserListComponent} from './user';
+import {BreviaryModule, ArticleBreviaryComponent} from './blog/breviary';
 
 import {LoginGuard} from './auth-guards';
 
@@ -25,7 +26,7 @@ const Guards = [
 ];
 
 const routes: Routes = [
-  {path: '', component: UserListComponent},
+  {path: '', component: ArticleBreviaryComponent},
   {path: 'login', component: LoginComponent, canActivate: [LoginGuard]},
   {path: 'register', component: RegisterComponent, canActivate: [LoginGuard]},
   {path: 'author', loadChildren: './blog/blog.module#BlogModule'},
@@ -41,6 +42,7 @@ const routes: Routes = [
     BrowserAnimationsModule,
     RouterModule.forRoot(routes),
     UserModule,
+    BreviaryModule,
     ...PrimeNGModules
   ],
   providers: [

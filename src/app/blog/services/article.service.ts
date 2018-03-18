@@ -70,4 +70,17 @@ export class ArticleService {
       });
   }
 
+  getBrevs(queryParams): Observable<any> {
+    const url = '/article/getBreviary';
+    return this.http.post(url, queryParams)
+      .catch((err) => {
+        this.messageService.add({
+          severity: 'error',
+          summary: 'Article Message',
+          detail: `Network Error`
+        });
+        throw err.message;
+      });
+  }
+
 }

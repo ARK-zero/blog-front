@@ -1,0 +1,13 @@
+<div class="breviary">
+  <div style="margin-top: 1rem"></div>
+
+  <ng-container *ngIf="breviaries && (breviaries.length>0)">
+    <ng-container *ngFor="let item of breviaries">
+      <app-article-breviary-item [breviary]="item"></app-article-breviary-item>
+    </ng-container>
+  </ng-container>
+
+  <div *ngIf="!moreBrevs">no more...</div>
+</div>
+
+

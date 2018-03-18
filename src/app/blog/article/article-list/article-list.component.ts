@@ -9,7 +9,7 @@ import {ArticleItem} from './common/article-item';
 export class ArticleListComponent implements OnInit {
 
   @Input() articleList: ArticleItem[];
-
+  @Input() isLoading: boolean;
   activeIndex: number = null;
 
   constructor() {

@@ -6,7 +6,7 @@ import {Article} from '../common/article';
 import {ArticleService} from '../../services';
 import {UserService} from '../../../user';
 import {BlogComponent} from '../../blog.component';
-import {TinymceConfig} from '../../config';
+import {TinymceConfig} from '../../../config';
 
 import 'rxjs/add/operator/switchMap';
 
@@ -66,7 +66,6 @@ export class ArticleEditComponent implements OnInit, OnDestroy {
     const config =  Object.assign(TinymceConfig, {
       target: this.textarea.nativeElement,
       setup: editor => {
-        console.log(editor);
         this.editor = editor;
       }
     });
@@ -102,6 +101,7 @@ export class ArticleEditComponent implements OnInit, OnDestroy {
     this.article.author = this.author;
     this.article.classification = this.classification._id || this.classification;
     this.article.content = this.editor.getContent();
+    this.article.updatedAt = new Date();
     this.articleService.saveArticle(this.article).subscribe((response) => {
       if (response['_id']) {
         this.messageService.add({

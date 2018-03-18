@@ -1,0 +1,57 @@
+.breviary-item {
+  margin: 0 0 1rem 0;
+  padding: 0 0 .75rem 0;
+  border-bottom: 1px solid #cfcfcf;
+  color: #2f2f2f;
+
+  .info {
+    font-size: .8rem;
+    color: #606060;
+    .username {
+      margin-right: .5rem;
+      cursor: pointer;
+      outline: none;
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+
+  .title {
+    display: inline-block;
+    cursor: pointer;
+    outline: none;
+    font-size: 1.25rem;
+    font-weight: 600;
+    line-height: .9;
+    margin: .75rem 0;
+    border-bottom: 1px solid rgba(0, 0, 0, 0);
+    &:hover {
+      border-bottom: 1px solid;
+    }
+  }
+}
+
+.content {
+  position: relative;
+  .breviary {
+    padding: 0 1rem 0 0;
+    word-break:break-all;
+  }
+
+  .img {
+    display: inline-block;
+    position: relative;
+    margin: -2rem auto 0 auto;
+    height: 100px;
+    overflow: hidden;
+    padding: 0;
+    img {
+      position: relative;
+      display: block;
+      margin: auto;
+      border-radius: .25rem;
+      height: 100%;
+    }
+  }
+}

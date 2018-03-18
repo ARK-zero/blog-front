@@ -1,0 +1,23 @@
+<div class="breviary-item">
+  <div class="author">
+    <div class="avatar"></div>
+
+    <div class="info">
+      <span class="username" routerLink="/author/{{breviary.author}}">{{breviary.author}}</span>
+      <div class="createdTime" style="display: inline-block">{{breviary.createdAt | date:'MM.dd HH:mm'}}</div>
+      <i class="fa fa-tag" aria-hidden="true" style="margin-left: 1rem"></i>
+      <span>{{breviary.classification}}</span>
+    </div>
+  </div>
+
+  <span class="title" routerLink="/author/{{breviary.author}}/article/{{breviary._id}}">{{breviary.title}}</span>
+
+  <div class="content ui-g">
+    <span class="breviary" [ngClass]="{'ui-g-8': breviary.src}">{{breviary.content}}</span>
+    <ng-container *ngIf="breviary.src">
+      <span class="img" [ngClass]="{'ui-g-4': breviary.src}" ><img src="{{breviary.src}}"/></span>
+    </ng-container>
+  </div>
+
+
+</div>

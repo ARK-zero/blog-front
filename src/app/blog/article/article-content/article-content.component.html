@@ -1,18 +1,19 @@
 <div class="post">
 
+  <p-confirmDialog [closable]=false appendTo="body" [responsive]=true></p-confirmDialog>
+
   <div class="article" *ngIf="article">
     <div *ngIf="userService.isLogin && (userService.username === article.author)" class="edit-button" >
-      <button pButton type="button" label="Edit" (click)="edit()"></button>
-      <button pButton type="button" label="Delete" (click)="delete()"></button>
+      <button pButton type="button" label="Edit" class="ui-button-secondary" (click)="edit()"></button>
+      <button pButton type="button" label="Delete" class="ui-button-secondary" (click)="deleteConfirm()"></button>
     </div>
-
 
     <div class="title">{{article.title}}</div>
 
     <div class="author flex-align">
       <div class="avatar"></div>
       <div class="info">
-        <div class="name">{{article.author}}</div>
+        <div class="name" routerLink="/author/{{article.author}}">{{article.author}}</div>
         <div class="detail">
           <span class="date" pTooltip="最后编辑于{{article.updatedAt | date:'y.MM.dd HH:mm'}}" tooltipPosition="bottom" tooltipEvent="hover">{{article.createdAt | date:'y.MM.dd HH:mm'}}</span>
           <i class="fa fa-tag" aria-hidden="true" style="margin-left: 1rem"></i>

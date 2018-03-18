@@ -1,9 +1,9 @@
 <div class="edit-page">
 
   <div class="title flex-align">
-    <input class="input" type="text" pInputText [(ngModel)]="title" placeholder="Title Place"/>
+    <input class="input ui-g-9" type="text" pInputText [(ngModel)]="title" placeholder="Title Place"/>
     <p-dropdown [options]="classifyInfo"  editable="true" autoDisplayFirst="true"
-                [(ngModel)]="classification"
+                [(ngModel)]="classification" [style]="{'width': '10rem'}"
                 optionLabel="_id" [filter]="true"
                 pTooltip="选择分类,可直接修改" tooltipPosition="top" tooltipEvent="hover"
     ></p-dropdown>
