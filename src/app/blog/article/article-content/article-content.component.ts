@@ -1,4 +1,4 @@
-import {Component, NgZone, OnDestroy, OnInit, Optional} from '@angular/core';
+import {Component, OnDestroy, OnInit, Optional} from '@angular/core';
 import {MessageService} from 'primeng/components/common/messageservice';
 import {ActivatedRoute} from '@angular/router';
 import {Router} from '@angular/router';
@@ -13,8 +13,8 @@ import 'rxjs/add/operator/do';
 import {Subscription} from 'rxjs/Subscription';
 import {DomSanitizer, Title} from '@angular/platform-browser';
 
-declare var Prism: any;
-declare var $: any;
+declare const Prism: any;
+declare const $: any;
 
 @Component({
   selector: 'app-article-content',
