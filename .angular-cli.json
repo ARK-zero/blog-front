@@ -28,7 +28,6 @@
       ],
       "scripts": [
         "../node_modules/jquery/dist/jquery.js",
-        "assets/tinymce/tinymce.min.js",
         "assets/prism/prism.js"
       ],
       "environmentSource": "environments/environment.ts",

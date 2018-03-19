@@ -1,4 +1,4 @@
-import {Component, ElementRef, Inject, OnInit, Renderer2, ViewChild, Optional, OnDestroy} from '@angular/core';
+import {Component, ElementRef, OnInit, ViewChild, Optional, OnDestroy} from '@angular/core';
 import {MessageService} from 'primeng/components/common/messageservice';
 import {ActivatedRoute} from '@angular/router';
 import {Router} from '@angular/router';
@@ -8,6 +8,7 @@ import {UserService} from '../../../user';
 import {BlogAuthorComponent} from '../../blog-author/blog-author.component';
 import {TinymceConfig} from '../../../_config';
 
+import 'assets/tinymce/tinymce.min.js';
 import 'rxjs/add/operator/switchMap';
 
 declare var tinymce: any;
@@ -25,7 +26,6 @@ export class ArticleEditComponent implements OnInit, OnDestroy {
 
   author: string;
   title: string;
-  // content: string;
   classification: any;
   classifyInfo: Array<any>;
 
