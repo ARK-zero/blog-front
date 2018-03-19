@@ -16,11 +16,11 @@ export class HeaderComponent implements OnInit {
   }
 
   goLogin() {
-    this.router.navigateByUrl('/login');
+    this.router.navigateByUrl('/user/login');
   }
 
   goRegister() {
-    this.router.navigateByUrl('/register');
+    this.router.navigateByUrl('/user/register');
   }
 
   logout() {

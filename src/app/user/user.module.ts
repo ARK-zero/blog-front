@@ -4,20 +4,22 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
 import {LoginComponent} from './login/login.component';
 import {RegisterComponent} from './register/register.component';
-import {UserService} from './user.service';
-import {RouterModule} from '@angular/router';
+import {RouterModule, Routes} from '@angular/router';
 
 import {InputTextModule} from 'primeng/inputtext';
 import {TooltipModule} from 'primeng/tooltip';
 import {ButtonModule} from 'primeng/button';
-import { UserListComponent } from './user-list/user-list.component';
+import {UserListComponent} from './user-list/user-list.component';
+
+const routes: Routes = [
+  {path: 'login', component: LoginComponent},
+  {path: 'register', component: RegisterComponent}
+];
 
 const PrimeNGModules = [
   InputTextModule,
   ButtonModule,
   TooltipModule
-];
-const PrimeNGServices = [
 ];
 
 @NgModule({
@@ -27,10 +29,10 @@ const PrimeNGServices = [
     FormsModule,
     ReactiveFormsModule,
     ...PrimeNGModules,
-    RouterModule
+    RouterModule.forChild(routes)
   ],
   declarations: [LoginComponent, RegisterComponent, UserListComponent],
-  providers: [UserService]
+  providers: []
 })
 export class UserModule {
 }

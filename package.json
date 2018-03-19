@@ -4,9 +4,9 @@
   "license": "MIT",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve --hmr",
+    "start": "ng serve --proxy-config proxy.config.js --prod",
     "start with proxy": "ng serve --proxy-config proxy.config.js",
-    "build": "ng build --prod",
+    "build": "ng build --prod --aot",
     "http-server": "http-server dist",
     "test": "ng test",
     "lint": "ng lint",

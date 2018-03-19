@@ -11,7 +11,7 @@ import {TinymceConfig} from '../../../_config';
 import 'assets/tinymce/tinymce.min.js';
 import 'rxjs/add/operator/switchMap';
 
-declare var tinymce: any;
+declare const tinymce: any;
 
 @Component({
   selector: 'app-article-edit',
