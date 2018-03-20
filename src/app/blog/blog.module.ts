@@ -1,6 +1,6 @@
 import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
-import {RouterModule, Routes} from '@angular/router';
+import {RouterModule, Routes, CanLoad} from '@angular/router';
 
 import {TooltipModule} from 'primeng/tooltip';
 import {ButtonModule} from 'primeng/button';
@@ -17,6 +17,8 @@ import {ListItemComponent, ArticleContentComponent, ArticleListComponent} from '
 import {ArticleService} from './services/article.service';
 import {DropdownDirective} from './header/directive/dropdown.directive';
 import {BlogComponent} from './blog/blog.component';
+
+import {EditGuard} from '../_guards';
 
 const PrimeNGModules = [
   TooltipModule,
@@ -45,7 +47,7 @@ const routes: Routes = [
         children: [
           {path: '', component: ArticleBreviaryComponent},
           {path: 'article/:articleId', component: ArticleContentComponent},
-          {path: 'edit', loadChildren: './article/article-edit/article-edit.module#ArticleEditModule'}
+          {path: 'edit', loadChildren: './article/article-edit/article-edit.module#ArticleEditModule', canLoad: [EditGuard]}
         ]
       }
     ]
@@ -62,7 +64,8 @@ const routes: Routes = [
   declarations: [...BlogComponents, DropdownDirective],
   providers: [
     ArticleService,
-    ConfirmationService
+    ConfirmationService,
+    EditGuard
   ]
 })
 export class BlogModule {

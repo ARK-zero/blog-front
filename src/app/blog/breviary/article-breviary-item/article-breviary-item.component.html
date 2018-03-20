@@ -13,9 +13,9 @@
   <span class="title" routerLink="/author/{{breviary.author}}/article/{{breviary._id}}">{{breviary.title}}</span>
 
   <div class="content ui-g">
-    <span class="breviary" [ngClass]="{'ui-g-8': breviary.src}">{{breviary.content}}</span>
+    <span class="breviary" [ngClass]="{'col-md-8': breviary.src}">{{breviary.content}}</span>
     <ng-container *ngIf="breviary.src">
-      <span class="img" [ngClass]="{'ui-g-4': breviary.src}" ><img src="{{breviary.src}}"/></span>
+      <span class="img d-none d-md-block" [ngClass]="{'ui-md-4': breviary.src}" ><img src="{{breviary.src}}"/></span>
     </ng-container>
   </div>
 

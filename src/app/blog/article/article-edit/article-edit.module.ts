@@ -5,11 +5,13 @@ import {RouterModule, Routes} from '@angular/router';
 
 import {DropdownModule} from 'primeng/dropdown';
 import {ButtonModule} from 'primeng/button';
+import {InputTextModule} from 'primeng/inputtext';
 import {ArticleEditComponent} from './article-edit.component';
 
 const PrimengModules = [
   DropdownModule,
-  ButtonModule
+  ButtonModule,
+  InputTextModule
 ];
 
 const routes: Routes = [

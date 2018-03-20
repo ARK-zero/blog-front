@@ -38,4 +38,8 @@ export class HeaderComponent implements OnInit {
   goUser() {
     this.router.navigateByUrl(`/author/${this.userService.username}`);
   }
+
+  goBack() {
+    window.history.back();
+  }
 }
