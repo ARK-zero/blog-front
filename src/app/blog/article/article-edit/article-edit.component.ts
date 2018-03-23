@@ -8,7 +8,6 @@ import {UserService} from '../../../user';
 import {BlogAuthorComponent} from '../../blog-author/blog-author.component';
 import {TinymceConfig} from '../../../_config';
 
-import 'assets/tinymce/tinymce.min.js';
 import 'rxjs/add/operator/switchMap';
 
 declare const tinymce: any;

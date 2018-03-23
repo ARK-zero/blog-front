@@ -1,7 +1,7 @@
 /* You can add global styles to this file, and also import other style files */
 * {
   box-sizing: border-box;
- }
+}
 
 html, body {
   height: 100%;
@@ -10,14 +10,19 @@ html, body {
   font-size: 16px;
   font-family: "Times New Roman", -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
 }
+
 body {
   overflow: auto;
 }
 
 ul, li {
-  list-style: none;
+  //list-style: none;
   margin: 0;
   padding: 0;
+}
+
+blockquote, p, h1, h2, h3, h4, h5, h6 {
+  margin: .25rem 0;
 }
 
 .flex-align {
@@ -25,7 +30,6 @@ ul, li {
   position: relative;
   align-content: center;
 }
-
 
 ::-webkit-scrollbar {
   width: .5rem;

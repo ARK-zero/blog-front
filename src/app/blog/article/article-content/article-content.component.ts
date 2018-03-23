@@ -58,7 +58,7 @@ export class ArticleContentComponent implements OnInit, OnDestroy {
           setTimeout(() => {
             $('pre').addClass('line-numbers');
             Prism.highlightAll();
-          }, 100);
+          }, 200);
         } else {
           this.messageService.add({
             severity: 'error',
@@ -103,7 +103,8 @@ export class ArticleContentComponent implements OnInit, OnDestroy {
       accept: () => {
         this.deleteArticle();
       },
-      reject: () => {}
+      reject: () => {
+      }
     });
   }
 }
