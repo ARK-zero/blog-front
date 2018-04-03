@@ -39,7 +39,12 @@ export class ArticleBreviaryComponent implements OnInit, OnDestroy {
 
   scrollMore() {
     this.scrollMore$ = Observable.fromEvent(document.body, 'scroll')
-      .filter((event) => (event['target'].scrollTop + event['target'].offsetHeight) / event['target'].scrollHeight > .9)
+      .filter((event) => event['target'].scrollHeight - (event['target'].scrollTop + event['target'].offsetHeight) < 200)
+      .filter((event) => {
+        if (this.moreBrevs) {
+          return event;
+        }
+      })
       .throttleTime(500);
     this.scrollMoreSubscription = this.scrollMore$.subscribe((event) => {
       this.getBrevs();

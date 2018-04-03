@@ -14,9 +14,9 @@ body {
   scrollbar-track-color: #F5F5F5
 }
 
-blockquote, p, h1, h2, h3, h4, h5, h6 {
+/*blockquote, p, h1, h2, h3, h4, h5, h6 {
   margin: .25rem 0;
-}
+}*/
 
 ::-webkit-scrollbar {
   width: .5rem;
