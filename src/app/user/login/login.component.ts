@@ -58,7 +58,7 @@ export class LoginComponent implements OnInit {
   }
 
   goRegister() {
-    this.router.navigateByUrl('/register');
+    this.router.navigateByUrl('/user/register');
   }
 
   goBack() {
